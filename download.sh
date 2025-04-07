@@ -28,8 +28,8 @@ mkdir -p "$download_dir"
 
 while IFS= read -r line; do
   # Extract the episode name and URL
-  name=$(echo "$line" | sed -E 's/^(.*)\.m3u8.*/\1/')
-  url="${series}/${line}"
+  name=$(echo "$line" | cut -d'-' -f1)
+  url=$(echo "$line" | cut -d'-' -f2-)
 
   # Store the name and URL in arrays
   names+=("$name")
