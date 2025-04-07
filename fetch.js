@@ -113,7 +113,7 @@ async function main() {
     console.log('Fetched playlist URLs:', pages);
 
     /* Create a directory for the series */
-    const seriesDir = path.resolve(__dirname, series_name);
+    const seriesDir = path.join(".", "downloads", series_name);
     if (!fs.existsSync(seriesDir)) {
         fs.mkdirSync(seriesDir, { recursive: true });
         console.log(`Directory created: ${seriesDir}`);
@@ -136,7 +136,7 @@ async function main() {
             console.log(`Playlist saved to ${filePath}`);
 
             /* Append to list file */
-            listFile.push(`${name.replace("-","_")}-${name}.m3u8`);
+            listFile.push(`${name.replace("-","_")}-${path.join(seriesDir, name+".m3u8")}`);
         } else {
             console.log(`No playlist data found for ${name}.`);
         }
